@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Andrea 🌻</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                              radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            font-family: 'Courier Prime', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            color: #E0B0FF;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .frase {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #DDA0DD;
+            text-shadow: 0 0 10px #DDA0DD;
+            margin-bottom: 20px;
+        }
+
+        .nombre {
+            font-size: 16px;
+            color: #DDA0DD;
+            text-shadow: 0 0 5px #DDA0DD;
+            margin-bottom: 20px;
+        }
+
+        .corazon {
+            color: red;
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+
+        .flowers-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, #228B22 0%, #32CD32 100%);
+            width: 10px;
+            height: 200px;
+            border-radius: 5px 5px 0 0;
+            animation: grow 2s ease-out;
+        }
+
+        .flower::after {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -20px;
+            width: 50px;
+            height: 50px;
+            background-color: #FFFF00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #FFFF00, 0 0 30px #FFFF00;
+        }
+
+        @keyframes grow {
+            from { height: 0; }
+            to { height: 200px; }
+        }
+
+        .lights {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(#FFFF00 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Reproductor configurado para iniciar en el segundo 51 -->
+    <audio id="audioPlayer" autoplay loop>
+        <source src="musica.mp3#t=51" type="audio/mpeg">
+    </audio>
+
+    <div class="lights"></div>
+
+    <div class="container">
+        <div class="frase">Más hermosa que<br>las flores eres<br>tu mi amiga</div>
+        <div class="nombre">Te quiero</div>
+        <div class="corazon">❤️</div>
+    </div>
+
+    <div class="flowers-container">
+        <div class="flower" style="left: 20%; animation-delay: 0.5s;"></div>
+        <div class="flower" style="left: 50%; animation-delay: 0.2s; height: 230px;"></div>
+        <div class="flower" style="left: 80%; animation-delay: 0.8s;"></div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('audioPlayer');
+            audio.currentTime = 51; // Inicia exactamente en el segundo 51 de Tiroteo
+            
+            let playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    document.body.addEventListener('click', () => {
+                        audio.currentTime = 51;
+                        audio.play();
+                    }, { once: true });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
